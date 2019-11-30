@@ -1,3 +1,3 @@
 # DockHuck
 This is a Online shopping site.
-https://msatul1305.github.io/DockHuck/
+https://msatul1305.github.io/DuckHawk/
