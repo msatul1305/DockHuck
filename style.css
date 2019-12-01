@@ -59,7 +59,7 @@
   color: black;
   box-shadow: 10px 10px 10px rgb(179, 177, 177) ;
   border: none;
-
+  padding: 10px;
 }
 #locationinputbox ::placeholder { 
   color: rgb(185, 180, 180);
