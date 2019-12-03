@@ -1,17 +1,12 @@
-
-// $(document).ready(function(){
-//   $(".location").hover(function(){
-//     $("").css("background-color", "yellow");
-//     }, function(){
-//     $(this).css("background-color", "pink");
-//   });
-// });
-
-// $(".onlocation").css("top","10vh");
-
-// $(document).ready(function(){
-//   $(".location").hover(function(){
-//     $(".onlocation").css("top","5vh");
-//     $(".onlocation").slideToggle(800);
-//   });
-// });
+// function autocompleteFocus(){
+// var autocomplete = new google.maps.places.Autocomplete(
+//       /** @type {!HTMLInputElement} */ (
+//           document.getElementById('locationin')), {
+//         types: ['(cities)'],
+//       });
+//       google.maps.event.addListener(autocomplete, 'place_changed', function() {
+//         var place = autocomplete.getPlace();
+//         console.log(place.name);
+//         alert(place.city);
+//         });
+// }
