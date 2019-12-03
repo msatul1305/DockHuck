@@ -2,6 +2,7 @@
 <html lang="en" class=" fonts-loaded">
 <head>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjPPzB5T4GTB0zx4eMXrmmevEaty9hNlQ&libraries=places"></script>
+  <!-- <script src="http://maps.google.com/maps/api/js?key=AIzaSyCjPPzB5T4GTB0zx4eMXrmmevEaty9hNlQ"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" href="./app.chunk.82a2ce.css">
@@ -22,18 +23,22 @@
               <a href="#" >DuckHawk</a>
             </div>
             <div class="_3dGepu location" id="ltn">
-              <div>
-                <img src="./spot.png" alt="" width="15%" style="float: left;">
+              <div onclick="locationfun()" >
+                <img src="./spot.png" alt="" width="15%" style="float: left;" class="back">
                 <a href="#" style="padding-top: 50%;" id="cityname">Location</a>
               </div>
               
-              <div class="onlocation">
+              <div class="onlocation" id="locationbox">
                   <div id="locationinputbox">
                       <input type="text" title="Location" name="locationin" placeholder="e.g. Delhi" id="locationin" (focus)="autocompleteFocus()" autofocus>
+                      <div class="clear" onclick="clearlocationSearchbox()"><a href="#">Cancel</a></div>
                     </div>
                     <div id="map"></div>
                     <img src="./locationblack.png" alt="">
-                    
+                    <div id="autolocation" style="display: flex;padding: 10px;" onclick="locationauto()">
+                      <img src="./spotblck.png" alt="" style="float: left;">
+                      <div class="text"><a href="#">Get current location</a></div>
+                    </div>
               </div>
 
             </div>
@@ -151,6 +156,24 @@
 
 <script>
   var selectedcity ;
+  var lat;
+  var lng;
+  function locationauto(){
+      if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      console.log("Error");
+      // x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  function showPosition(position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+  console.log("Latitude: " + position.coords.latitude + 
+  "\nLongitude: " + position.coords.longitude);
+  displayLocation(lat,lng);
+}
+
 var autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */ (
           document.getElementById('locationin')), {
@@ -163,7 +186,46 @@ var autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('cityname').innerHTML = selectedcity[0] ; 
         var numItems = $(".pac-item").length;
         console.log(numItems);
+        document.getElementById('locationbox').style.width = "0px";
         });
+
+
+        function displayLocation(latitude,longitude){
+    var geocoder;
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(latitude, longitude);
+
+    geocoder.geocode(
+        {'latLng': latlng}, 
+        function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var add= results[0].formatted_address ;
+                    var  value=add.split(",");
+
+                    count=value.length;
+                    country=value[count-1];
+                    state=value[count-2];
+                    city=value[count-3];
+                   console.log("city name is: " + city);
+                }
+                else  {
+                    console.log("address not found");
+                }
+            }
+            else {
+                console.log("Geocoder failed due to: " + status);
+            }
+        }
+    );
+}
+
+
+
+
+
+
+
         
 </script>
 
