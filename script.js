@@ -1,5 +1,6 @@
 
 // $(document).ready(function(){
+//     console.log(1);
 //   $(".location").hover(function(){
 //     $("").css("background-color", "yellow");
 //     }, function(){
