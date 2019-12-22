@@ -9,7 +9,37 @@
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js"></script>
   <title>DuckHawk - Online Shopping .</title>
-  
+
+  <!--Firebase SDK setup-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase.js"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBGdT1NqdlmpGM7nt5cIKI2ypE-OTQnqz8",
+    authDomain: "duckhawk-1699a.firebaseapp.com",
+    databaseURL: "https://duckhawk-1699a.firebaseio.com",
+    projectId: "duckhawk-1699a",
+    storageBucket: "duckhawk-1699a.appspot.com",
+    messagingSenderId: "310324939369",
+    appId: "1:310324939369:web:c290e9fdf3a88b4bb930f8",
+    measurementId: "G-Y3CR0HNHNW"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // firebase.analytics();
+
+  var db = firebase.database();
+  var ref = db.ref();
+  // ref.child("/name").set("Balgopal");
+  // ref.child("/email").set("Patro");
+  console.log(db);
+
+</script>
+<!--End Of the Firebase Initialization-->
  </head>
 <body>
 <div id="container">
