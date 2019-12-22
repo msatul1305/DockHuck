@@ -119,3 +119,16 @@
   color: black;
   font-size: 150%;
 }
+
+
+.loginForm{
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width:40% ;
+  height: 70vh;
+  background-color: rgb(162, 194, 235);
+  display: none;
+  border-radius: 2%;
+  box-shadow: 10px 10px 10px rgb(179, 177, 177) ;
+}
