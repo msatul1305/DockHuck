@@ -7,7 +7,7 @@
   <link rel="icon" href="./icon.jpeg">
   <link rel="stylesheet" href="./app.chunk.82a2ce.css">
   <link rel="stylesheet" href="./style.css">
-  <script src="./script.js"></script>
+  
   <title>DuckHawk - Online Shopping .</title>
 
   <!--Firebase SDK setup-->
@@ -29,17 +29,14 @@
     measurementId: "G-Y3CR0HNHNW"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  // firebase.analytics();
+//   firebase.initializeApp(firebaseConfig);
+//   // firebase.analytics();
 
-  var db = firebase.database();
-  var ref = db.ref();
-  // ref.child("/name").set("Balgopal");
-  // ref.child("/email").set("Patro");
-  console.log(db);
 
 </script>
 <!--End Of the Firebase Initialization-->
+
+<script src="./script.js"></script>
  </head>
 <body>
 <div id="container">
@@ -163,13 +160,19 @@
 
 
     <div class="loginForm" id="formforlogin">
-        <form>
-            <input type="text" name="userName">
-            <input type="password" name="password">
-            <input type="submit" value="">
-        </form>
-
-        <h4>New To DuckHawk ? Create an Acc</h4>
+        <div id="login" style="width: 100%; height: 100%;">
+                <input type="text" name="Email" id="lemail">
+                <input type="password" name="password" id="lpassword">
+                <button type="submit" onclick="login()">Login</button>
+                <a href="#"><h4 onclick="openSignUPform()">New To DuckHawk ? Create an Account</h4></a>
+        </div>
+        <div id="signup" style="display: none;">
+            <input type="text" name="name" placeholder="Name" id="name">
+            <input type="text" name="Email" placeholder="Email" id="email">
+            <input type="password" name="password" placeholder="password" id="password">
+            <button type="submit" onclick="signup()">SignUp</button>
+            <a href="#" onclick="openLoginform()"><h4>Already have an account ! Login.</h4></a>
+        </div>
     </div>
 
     <script>
@@ -234,7 +237,6 @@ var autocomplete = new google.maps.places.Autocomplete(
                 if (results[0]) {
                     var add= results[0].formatted_address ;
                     var  value=add.split(",");
-
                     count=value.length;
                     country=value[count-1];
                     state=value[count-2];

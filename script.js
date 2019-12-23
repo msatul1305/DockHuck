@@ -17,6 +17,12 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 console.log(database);
 
+  var db = firebase.database();
+  var ref = db.ref();
+  ref.child("/name1").set("Balgopal");
+  ref.child("/email").set("Patro");
+  console.log(db);
+
 
 
 
@@ -33,4 +39,66 @@ function clearlocationSearchbox(){
     document.getElementById('locationin').value = "";
 }
 
+function openSignUPform(){
+    document.getElementById('signup').style.display = "block";
+    document.getElementById('login').style.display = "none";
+}
+
+function openLoginform(){
+    document.getElementById('signup').style.display = "none";
+    document.getElementById('login').style.display = "block";
+}
+
+
+var  UserName ;
+
+
+function signup(){
+    var name = document.getElementById('name').value;
+    UserName = name;
+    var password = document.getElementById('password').value;
+    var email = document.getElementById('email').value;
+
+  
+          firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            
+            // ...
+          });
+        
+     
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          console.log(user.uid);
+          var database = firebase.database();
+          var ref = database.ref("User/");
+          ref.child(user.uid+"/name").set(name);
+          ref.child(user.uid+"/email").set(email);
+        } else {
+          // No user is signed in.
+        }
+      });   
+}
+
+function login(){    
+    var email = document.getElementById('lemail').value;
+    var password = document.getElementById('lpassword').value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if(errorCode != null){
+  
+          alert("No Account exist on your Email ! Please SignUp");
+        
+        }
+      });
+  
+
+}
 
